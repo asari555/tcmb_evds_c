@@ -76,39 +76,39 @@ cargo doc --open
 
 # Enums and Structures
 
-+ Enums 
+**Enums** 
 	
-	> Aim of using enum is to specify required variable with a name not a magical number.
+> Aim of using enum is to specify required variable with a name not a magical number.
 
-	- TcmbEvdsReturnFormat
++ TcmbEvdsReturnFormat
 
-		> is used in operational functions as an argument and specifies return format of the EVDS response.
+> is used in operational functions as an argument and specifies return format of the EVDS response.
 
-	- TcmbEvdsReturnErrorC
++ TcmbEvdsReturnErrorC
 
-		> gives opportunity to handle specified errors. It is used with result structure.
+> gives opportunity to handle specified errors. It is used with result structure.
 
-	- TcmbEvdsAggregationType
++ TcmbEvdsAggregationType
 
-		> is used in operational functions as an argument and specifies aggregation type `tcmb_evds_c_get_advanced_data` function.
+> is used in operational functions as an argument and specifies aggregation type `tcmb_evds_c_get_advanced_data` function.
 
-	- TcmbEvdsFormula
++ TcmbEvdsFormula
 
-		> is used in operational functions as an argument and specifies formula for `tcmb_evds_c_get_advanced_data` function.
+> is used in operational functions as an argument and specifies formula for `tcmb_evds_c_get_advanced_data` function.
 
-    - TcmbEvdsDataFrequency 
++ TcmbEvdsDataFrequency 
 
-		> is used in operational functions as an argument and specifies data frequency for `tcmb_evds_c_get_advanced_data` function.
+> is used in operational functions as an argument and specifies data frequency for `tcmb_evds_c_get_advanced_data` function.
 
-+ Structures
+**Structures**
 
-	- TcmbEvdsInput
++ TcmbEvdsInput
 
-		> includes a char pointer and the length of the C string to handle with Rust language.
+> includes a char pointer and the length of the C string to handle with Rust language.
 
-	- TcmbEvdsResult
++ TcmbEvdsResult
 
-		> includes a char pointer, the length of the Rust string and error type to handle an error in the case of a problem. The error returns `NoError` when the result returns response against request. Otherwise, it returns specific error type.
+> includes a char pointer, the length of the Rust string and error type to handle an error in the case of a problem. The error returns `NoError` when the result returns response against request. Otherwise, it returns specific error type.
 
 # Operational Functions
 
