@@ -4,19 +4,22 @@ A C library for reaching the database of The Central Bank of The Republic of Tur
 
 The crate was purely written in Rust language and provides C FFI functions to make the EVDS web services operations in C language. The built format of this crate is the C library.
 
-# Contents
+### Table of Contents
 
-+ General Information
-+ Pre-requests
-+ Installation
-+ Building C Library
-+ Documentation
-+ Enums and Structures
-+ Operational Functions
-+ Parameters
-+ Example
++ **[General Information](#general-information)**
++ **[Pre-requests](#pre-requests)**
++ **[Installation](#installation)**
++ **[Building C Library](#building-c-ibrary)**
++ **[Documentation](#documentation)**
++ **[Enums and Structures](#enums-and-structures)**
++ **[Operational Functions](#operational-functions)**
++ **[Parameters](#parameters)**
++ **[Example](#example)**
++ **[Appendix](#appendix)**
++ **[Release History](#release-history)**
++ **[References](#references)**
 
-# General Information
+## General Information
 
 tcmb_evds_c is a Rust crate, namely a library for C users. This crate includes a mechanism to make EVDS web services requests with a module and operational FFI functions. The module is called `evds_c` which contains enums and structures that the operational functions need.
 
@@ -24,7 +27,7 @@ The crate is designed to operate the FFI functions easily and safely with the he
 
 There are sub-modules inside of the `evds_c` module. These are called `advanced_entities`, `common_entities` and `error_handling`. Related entities such as enums are located in the mentioned modules. However, these modules are not given in the header file. C users works with the header that contains all of the public enums and structures located in the mentioned modules. These entities should be use to supply appropriate arguments to the operational function parameters.
 
-# Pre-requests
+## Pre-requests
 
 + API Key
 
@@ -36,7 +39,7 @@ There are sub-modules inside of the `evds_c` module. These are called `advanced_
 
 [`Getting an API Key`]: <https://evds2.tcmb.gov.tr/help/videos/User_Guide_to_Access_EVDS_Data_by_Using_Python.pdf>
 
-# Installation
+## Installation
 
 Please,
 
@@ -50,14 +53,14 @@ open the folder,
 cd tcmb_evds_c
 ```
 
-Please clone the repository,
+clone the repository,
 ```
 git clone https://github.com/asari555/tcmb_evds_c
 ```
 
 [`Rust and Cargo`]: <https://doc.rust-lang.org/cargo/getting-started/installation.html>
 
-# Building C Library
+## Building C Library
 
 The crate should be built to get the required header file and OS dependent library for C. The the header file and the library names are `tcmb_evds_c.h` and `libtcmb_evds_c.*` respectively. In addition the header file and the required library are located in `target` and `target/release` folders respectively.
 
@@ -68,7 +71,7 @@ cargo build --release
 
 After this command, user can copy the required files from the mentioned folders.
 
-# Documentation
+## Documentation
 
 For users who are **curious** about the usage hierarchy, seeing obvious examples and details of the crate, please apply the below command in the workspace `tcmb_evds_c` to open the documentation in their browsers.
 
@@ -76,79 +79,79 @@ For users who are **curious** about the usage hierarchy, seeing obvious examples
 cargo doc --open
 ```
 
-# Enums and Structures
+## Enums and Structures
 
-**Enums** 
+### **Enums** 
 	
 Aim of using enum is to specify required variable with a name not a magical number.
 
 + TcmbEvdsReturnFormat
 
-> is used in operational functions as an argument and specifies return format of the EVDS response.
+ 	is used in operational functions as an argument and specifies return format of the EVDS response.
 
 + TcmbEvdsReturnErrorC
 
-> gives opportunity to handle specified errors. It is used with result structure.
+	gives opportunity to handle specified errors. It is used with result structure.
 
 + TcmbEvdsAggregationType
 
-> is used in operational functions as an argument and specifies aggregation type `tcmb_evds_c_get_advanced_data` function.
+	is used in operational functions as an argument and specifies aggregation type `tcmb_evds_c_get_advanced_data` function.
 
 + TcmbEvdsFormula
 
-> is used in operational functions as an argument and specifies formula for `tcmb_evds_c_get_advanced_data` function.
+	is used in operational functions as an argument and specifies formula for `tcmb_evds_c_get_advanced_data` function.
 
 + TcmbEvdsDataFrequency 
 
-> is used in operational functions as an argument and specifies data frequency for `tcmb_evds_c_get_advanced_data` function.
+	is used in operational functions as an argument and specifies data frequency for `tcmb_evds_c_get_advanced_data` function.
 
-**Structures**
+### **Structures**
 
 + TcmbEvdsInput
 
-> includes a char pointer and the length of the C string to handle with Rust language.
+	includes a char pointer and the length of the C string to handle with Rust language.
 
 + TcmbEvdsResult
 
-> includes a char pointer, the length of the Rust string and error type to handle an error in the case of a problem. The error returns `NoError` when the result returns response against request. Otherwise, it returns specific error type.
+	includes a char pointer, the length of the Rust string and error type to handle an error in the case of a problem. The error returns `NoError` when the result returns response against request. Otherwise, it returns specific error type.
 
-# Operational Functions
+## Operational Functions
 
-**`tcmb_evds_c_get_data`**
+### **`tcmb_evds_c_get_data`**
 
-corresponds `2.1. Level Values Requests` in the [`EVDS web services guide`]. In addition, most of the data series can be requested by this function with giving appropriate and valid argument to the `data_series` parameter.
+This function corresponds `2.1. Level Values Requests` in the [`EVDS web services guide`]. In addition, most of the data series can be requested by this function with giving appropriate and valid argument to the `data_series` parameter.
 
-**`tcmb_evds_c_get_advanced_data`**
+### **`tcmb_evds_c_get_advanced_data`**
 
-corresponds `2.2. The Most Commonly Used Series with Frequecy Formulas` in the [`EVDS web services guide`]. It is important to mention that this function only provides operation for currency data series with frequency formulas. The extension `Frequency Formulas` cause naming the function advanced comparing to `tcmb_evds_c_get_data`.
+This function corresponds `2.2. The Most Commonly Used Series with Frequecy Formulas` in the [`EVDS web services guide`]. It is important to mention that this function only provides operation for currency data series with frequency formulas. The extension `Frequency Formulas` cause naming the function advanced comparing to `tcmb_evds_c_get_data`.
 
-**`tcmb_evds_c_get_data_group`**
+### **`tcmb_evds_c_get_data_group`**
 
-corresponds `3. All Series Data By Given Data Group` in the [`EVDS web services guide`]. The appropriate and valid data group code should be supplied to the `data_group` parameter in order to get all series data.
+This function corresponds `3. All Series Data By Given Data Group` in the [`EVDS web services guide`]. The appropriate and valid data group code should be supplied to the `data_group` parameter in order to get all series data.
 
-**`tcmb_evds_c_get_categories`**
+### **`tcmb_evds_c_get_categories`**
 
-corresponds `4.1. Category Service` in the [`EVDS web services guide`] and returns all main categories provided by EVDS.
+This function corresponds `4.1. Category Service` in the [`EVDS web services guide`] and returns all main categories provided by EVDS.
 
-**`tcmb_evds_c_get_advanced_data_group`**
+### **`tcmb_evds_c_get_advanced_data_group`**
 
-corresponds `4.2. Data Group Service ` in the [`EVDS web services guide`] and returns requested data groups in EVDS with given mode and code options. To learn what are mode and code, please follow [`EVDS web services guide`]. Also, the function is named 'advanced' due to additional options with respect to `tcmb_evds_c_get_data_group` function.
+This function corresponds `4.2. Data Group Service ` in the [`EVDS web services guide`] and returns requested data groups in EVDS with given mode and code options. To learn what are mode and code, please follow [`EVDS web services guide`]. Also, the function is named 'advanced' due to additional options with respect to `tcmb_evds_c_get_data_group` function.
 
-**`tcmb_evds_c_get_series_list`**
+### **`tcmb_evds_c_get_series_list`**
 
-corresponds `4.3. Series Service` in the [`EVDS web services guide`] and returns a series list composed of data group and data series code.
+This function corresponds `4.3. Series Service` in the [`EVDS web services guide`] and returns a series list composed of data group and data series code.
 
-# Parameters
+## Parameters
 
-**Date**
+### **Date**
 
 Date/s can be given as an argument with required format which is "13-12-2011" for single date or "13-12-2011, 13-12-2012", "13-12-2011,13-12-2012" for multiple dates. In contrast, the invalid date formats cause returning error. 
 
-**Rest of the Parameters**
+### **Rest of the Parameters**
 
 It is expected that valid arguments are provided for the parameters. The valid and related parameter arguments are provided in [`EVDS web services guide`]. Please, read the guide before using the operational functions.
 
-# Example 
+## Example 
 
 The operational FFI functions have `ascii_mode` parameter that converts the EVDS response into ascii chars and English chars. It is not expected that the response includes non-utf8 chars. However, the ascii_mode converts non-utf8 characters into ' * ' in the case of occurring. Furthermore, the mode becomes active if it is true.
 
@@ -480,24 +483,21 @@ int main() {
 
 [`EVDS web services guide`]: <https://evds2.tcmb.gov.tr/help/videos/EVDS_Web_Service_Usage_Guide.pdf>
 
-# To The User's Attention
+## Appendix
 
 Various errors are handled such as invalid input parameters, bad internet connection etc. given with `ReturnErrorC` enum elements. However, some unexpected invalid data series or data groups supplied by users may cause EVDS response error which could not be handled. Therefore, the result does not return an error, though the response includes an error message. 
 
 In conclusion, users are responsible to provide valid arguments to operational functions. Especially, `data_series` and `data_group` parameters must be supplied appropriately and with valid arguments.
 
-# Release History
+## Release History
 
 + 0.1.0
 
 	- The first release.
 
 
-# References
+## References
 
 + **EVDS usage guide**. CBRT EVDS. Available at: https://evds2.tcmb.gov.tr/help/videos/EVDS_Web_Service_Usage_Guide.pdf
 
 + **API key generation**. CBRT EVDS. Available at: https://evds2.tcmb.gov.tr/help/videos/User_Guide_to_Access_EVDS_Data_by_Using_Python.pdf
-
-
-
