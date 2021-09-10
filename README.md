@@ -78,43 +78,43 @@ cargo doc --open
 
 **Enums** 
 	
-> Aim of using enum is to specify required variable with a name not a magical number.
+Aim of using enum is to specify required variable with a name not a magical number.
 
 + TcmbEvdsReturnFormat
 
-> is used in operational functions as an argument and specifies return format of the EVDS response.
+	is used in operational functions as an argument and specifies return format of the EVDS response.
 
 + TcmbEvdsReturnErrorC
 
-> gives opportunity to handle specified errors. It is used with result structure.
+	gives opportunity to handle specified errors. It is used with result structure.
 
 + TcmbEvdsAggregationType
 
-> is used in operational functions as an argument and specifies aggregation type `tcmb_evds_c_get_advanced_data` function.
+	is used in operational functions as an argument and specifies aggregation type `tcmb_evds_c_get_advanced_data` function.
 
 + TcmbEvdsFormula
 
-> is used in operational functions as an argument and specifies formula for `tcmb_evds_c_get_advanced_data` function.
+	is used in operational functions as an argument and specifies formula for `tcmb_evds_c_get_advanced_data` function.
 
 + TcmbEvdsDataFrequency 
 
-> is used in operational functions as an argument and specifies data frequency for `tcmb_evds_c_get_advanced_data` function.
+	is used in operational functions as an argument and specifies data frequency for `tcmb_evds_c_get_advanced_data` function.
 
 **Structures**
 
 + TcmbEvdsInput
 
-> includes a char pointer and the length of the C string to handle with Rust language.
+	includes a char pointer and the length of the C string to handle with Rust language.
 
 + TcmbEvdsResult
 
-> includes a char pointer, the length of the Rust string and error type to handle an error in the case of a problem. The error returns `NoError` when the result returns response against request. Otherwise, it returns specific error type.
+	includes a char pointer, the length of the Rust string and error type to handle an error in the case of a problem. The error returns `NoError` when the result returns response against request. Otherwise, it returns specific error type.
 
 # Operational Functions
 
 + `tcmb_evds_c_get_data`
 
-> corresponds `2.1. Level Values Requests` in the [`EVDS web services guide`]. In addition, most of the data series can be requested by this function with giving appropriate and valid argument to the `data_series` parameter.
+	corresponds `2.1. Level Values Requests` in the [`EVDS web services guide`]. In addition, most of the data series can be requested by this function with giving appropriate and valid argument to the `data_series` parameter.
 
 + `tcmb_evds_c_get_advanced_data`
 
@@ -122,27 +122,27 @@ cargo doc --open
 
 + `tcmb_evds_c_get_data_group`
 
-> corresponds `3. All Series Data By Given Data Group` in the [`EVDS web services guide`]. The appropriate and valid data group code should be supplied to the `data_group` parameter in order to get all series data.
+	corresponds `3. All Series Data By Given Data Group` in the [`EVDS web services guide`]. The appropriate and valid data group code should be supplied to the `data_group` parameter in order to get all series data.
 
 + `tcmb_evds_c_get_categories`
 
-> corresponds `4.1. Category Service` in the [`EVDS web services guide`] and returns all main categories provided by EVDS.
+	corresponds `4.1. Category Service` in the [`EVDS web services guide`] and returns all main categories provided by EVDS.
 
 + `tcmb_evds_c_get_advanced_data_group`
 
-> corresponds `4.2. Data Group Service ` in the [`EVDS web services guide`] and returns requested data groups in EVDS with given mode and code options. To learn what are mode and code, please follow [`EVDS web services guide`]. Also, the function is named 'advanced' due to additional options with respect to `tcmb_evds_c_get_data_group` function.
+	corresponds `4.2. Data Group Service ` in the [`EVDS web services guide`] and returns requested data groups in EVDS with given mode and code options. To learn what are mode and code, please follow [`EVDS web services guide`]. Also, the function is named 'advanced' due to additional options with respect to `tcmb_evds_c_get_data_group` function.
 
 + `tcmb_evds_c_get_series_list`
 
-> corresponds `4.3. Series Service` in the [`EVDS web services guide`] and returns a series list composed of data group and data series code.
+	corresponds `4.3. Series Service` in the [`EVDS web services guide`] and returns a series list composed of data group and data series code.
 
 # Parameters
 
-+ Date
+**Date**
 
 Date/s can be given as an argument with required format which is "13-12-2011" for single date or "13-12-2011, 13-12-2012", "13-12-2011,13-12-2012" for multiple dates. In contrast, the invalid date formats cause returning error. 
 
-+ Rest of the Parameters
+**Rest of the Parameters**
 
 It is expected that valid arguments are provided for the parameters. The valid and related parameter arguments are provided in [`EVDS web services guide`]. Please, read the guide before using the operational functions.
 
@@ -153,7 +153,7 @@ The operational FFI functions have `ascii_mode` parameter that converts the EVDS
 Users need to be sure that their API key is valid. If it is valid, "VALID_API_KEY" string slice should be exchanged with the valid API key in the examples.
 
 *About Result:* 
-> *The result of a function can be requested data or an error message. It can be easily understood that the result includes error if it is checked via `tcmb_evds_c_is_error` function. Furthermore, it is possible that the error type can be checked without reading error message.*
+*The result of a function can be requested data or an error message. It can be easily understood that the result includes error if it is checked via `tcmb_evds_c_is_error` function. Furthermore, it is possible that the error type can be checked without reading error message.*
 
 Example usage of `tcmb_evds_c_get_data` operational function:
 
