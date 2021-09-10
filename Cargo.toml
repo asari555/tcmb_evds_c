@@ -1,0 +1,28 @@
+[package]
+name = "tcmb_evds_c"
+version = "0.1.0"
+authors = ["asari555 <asari571@gmail.com>"]
+edition = "2018"
+build = "build.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+default = ["sync_mode"]
+async_mode = []
+sync_mode = []
+
+[build-dependencies]
+cbindgen = "0.20"
+
+[dependencies]
+curl = "0.4.38"
+libc = "0.2"
+
+[lib]
+name = "tcmb_evds_c"
+crate-type = ["cdylib", "staticlib"]
+
+[target.x86_64-apple-darwin]
+linker = "x86_64-apple-darwin15-gcc"
+ar = "x86_64-apple-darwin15-ar"
