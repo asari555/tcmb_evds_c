@@ -2,14 +2,15 @@
 
 A C library for reaching the database of The Central Bank of The Republic of Turkey (CBRT).
 
-The crate was purely written in Rust language and provides C FFI functions to make the EVDS web services operations in C language. The built format of this crate is the C library.
+The crate was purely written in Rust language and provides C FFI functions to make the EVDS web services operations in C language. The built format of this crate is the C library. In addition, prebuilt C libraries are supplied with this repo.
 
 ### Table of Contents
 
 + **[General Information](#general-information)**
++ **[Prebuilt Libraries](#prebuilt-libraries)**
 + **[Pre-requests](#pre-requests)**
 + **[Installation](#installation)**
-+ **[Building C Library](#building-c-ibrary)**
++ **[Building C Library](#building-c-library)**
 + **[Documentation](#documentation)**
 + **[Enums and Structures](#enums-and-structures)**
 + **[Operational Functions](#operational-functions)**
@@ -27,6 +28,10 @@ The crate is designed to operate the FFI functions easily and safely with the he
 
 There are sub-modules inside of the `evds_c` module. These are called `advanced_entities`, `common_entities` and `error_handling`. Related entities such as enums are located in the mentioned modules. However, these modules are not given in the header file. C users works with the header that contains all of the public enums and structures located in the mentioned modules. These entities should be use to supply appropriate arguments to the operational function parameters.
 
+## Prebuilt Libraries
+
+There are ready built libraries that are served in the workspace folder. Furthermore, the name of the folder contains the libraries is `prebuilt_libraries`. The header called `tcmb_evds_c.h` and the static and dynamic libraries for Windows, MacOs and Unix extensions are given in `prebuilt_libraries`.
+
 ## Pre-requests
 
 ### API Key
@@ -43,19 +48,19 @@ There are sub-modules inside of the `evds_c` module. These are called `advanced_
 
 Please,
 
-create a folder named *tcmb_evds_c*,
+clone the repository,
++ Windows
 ```
-mkdir tcmb_evds_c
+git.exe clone https://github.com/asari555/tcmb_evds_c
+```
++ Unix, MacOs
+```
+$ git clone https://github.com/asari555/tcmb_evds_c
 ```
 
 open the folder,
 ```
 cd tcmb_evds_c
-```
-
-clone the repository,
-```
-git clone https://github.com/asari555/tcmb_evds_c
 ```
 
 [`Rust and Cargo`]: <https://doc.rust-lang.org/cargo/getting-started/installation.html>
@@ -65,8 +70,13 @@ git clone https://github.com/asari555/tcmb_evds_c
 The crate should be built to get the required header file and OS dependent library for C. The the header file and the library names are `tcmb_evds_c.h` and `libtcmb_evds_c.*` respectively. In addition the header file and the required library are located in `target` and `target/release` folders respectively.
 
 Please, apply the below command into your terminal in the workspace `tcmb_evds_c`.
++ Windows
 ```
-cargo build --release
+cargo.exe build --release
+```
++ Unix, MacOs
+```
+$ cargo build --release
 ```
 
 After this command, user can copy the required files from the mentioned folders.
@@ -74,9 +84,13 @@ After this command, user can copy the required files from the mentioned folders.
 ## Documentation
 
 For users who are **curious** about the usage hierarchy, seeing obvious examples and details of the crate, please apply the below command in the workspace `tcmb_evds_c` to open the documentation in their browsers.
-
++ Windows
 ```
-cargo doc --open
+cargo.exe doc --open
+```
++ Unix, MacOs
+```
+$ cargo doc --open
 ```
 
 ## Enums and Structures
@@ -85,33 +99,33 @@ cargo doc --open
 	
 Aim of using enum is to specify required variable with a name not a magical number.
 
-+ TcmbEvdsReturnFormat
++ **TcmbEvdsReturnFormat**
 
  	is used in operational functions as an argument and specifies return format of the EVDS response.
 
-+ TcmbEvdsReturnErrorC
++ **TcmbEvdsReturnErrorC**
 
 	gives opportunity to handle specified errors. It is used with result structure.
 
-+ TcmbEvdsAggregationType
++ **TcmbEvdsAggregationType**
 
 	is used in operational functions as an argument and specifies aggregation type `tcmb_evds_c_get_advanced_data` function.
 
-+ TcmbEvdsFormula
++ **TcmbEvdsFormula**
 
 	is used in operational functions as an argument and specifies formula for `tcmb_evds_c_get_advanced_data` function.
 
-+ TcmbEvdsDataFrequency 
++ **TcmbEvdsDataFrequency**
 
 	is used in operational functions as an argument and specifies data frequency for `tcmb_evds_c_get_advanced_data` function.
 
 ### **Structures**
 
-+ TcmbEvdsInput
++ **TcmbEvdsInput**
 
 	includes a char pointer and the length of the C string to handle with Rust language.
 
-+ TcmbEvdsResult
++ **TcmbEvdsResult**
 
 	includes a char pointer, the length of the Rust string and error type to handle an error in the case of a problem. The error returns `NoError` when the result returns response against request. Otherwise, it returns specific error type.
 
