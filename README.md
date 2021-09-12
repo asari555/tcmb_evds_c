@@ -30,7 +30,9 @@ There are sub-modules inside of the `evds_c` module. These are called `advanced_
 
 ## Prebuilt Libraries
 
-There are ready built libraries that are served in the workspace folder. Furthermore, the name of the folder contains the libraries is `prebuilt_libraries`. The header called `tcmb_evds_c.h` and the static and dynamic libraries for Windows, MacOs and Unix extensions are given in `prebuilt_libraries`.
+There are ready built libraries that are served in the workspace folder. Furthermore, the name of the folder contains the libraries is `prebuilt_libraries`. The header called `tcmb_evds_c.h` and the static and dynamic libraries for Windows, MacOs and Unix extensions are given in `prebuilt_libraries`. 
+
+*If users want to build one of the libraries on their computers, the installation procedures below must be followed.*
 
 ## Pre-requests
 
@@ -79,7 +81,7 @@ cargo.exe build --release
 $ cargo build --release
 ```
 
-After this command, user can copy the required files from the mentioned folders.
+After this command, users can copy the required files from the mentioned folders.
 
 ## Documentation
 
