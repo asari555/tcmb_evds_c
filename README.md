@@ -30,7 +30,7 @@ There are sub-modules inside of the `evds_c` module. These are called `advanced_
 
 ## Prebuilt Libraries
 
-There are ready built libraries that are served in the workspace folder. Furthermore, the name of the folder contains the libraries is `prebuilt_libraries`. The header called `tcmb_evds_c.h` and the static and dynamic libraries for Windows, MacOs and Unix extensions are given in `prebuilt_libraries`. 
+There are ready built libraries that are served in the workspace folder. Furthermore, the name of the folder contains the libraries is `prebuilt_libraries`. The header called `tcmb_evds_c.h` and the dynamic library for Windows, MacOs and Unix extensions are given in `prebuilt_libraries`. 
 
 *If users want to build one of the libraries on their computers, the installation procedures below must be followed.*
 
@@ -51,13 +51,8 @@ There are ready built libraries that are served in the workspace folder. Further
 Please,
 
 clone the repository,
-+ Windows
 ```
-git.exe clone https://github.com/asari555/tcmb_evds_c
-```
-+ Unix, MacOs
-```
-$ git clone https://github.com/asari555/tcmb_evds_c
+git clone https://github.com/asari555/tcmb_evds_c
 ```
 
 open the folder,
@@ -72,13 +67,8 @@ cd tcmb_evds_c
 The crate should be built to get the required header file and OS dependent library for C. The the header file and the library names are `tcmb_evds_c.h` and `libtcmb_evds_c.*` respectively. In addition the header file and the required library are located in `target` and `target/release` folders respectively.
 
 Please, apply the below command into your terminal in the workspace `tcmb_evds_c`.
-+ Windows
 ```
-cargo.exe build --release
-```
-+ Unix, MacOs
-```
-$ cargo build --release
+cargo build --release
 ```
 
 After this command, users can copy the required files from the mentioned folders.
@@ -86,13 +76,8 @@ After this command, users can copy the required files from the mentioned folders
 ## Documentation
 
 For users who are **curious** about the usage hierarchy, seeing obvious examples and details of the crate, please apply the below command in the workspace `tcmb_evds_c` to open the documentation in their browsers.
-+ Windows
 ```
-cargo.exe doc --open
-```
-+ Unix, MacOs
-```
-$ cargo doc --open
+cargo doc --open
 ```
 
 ## Enums and Structures
