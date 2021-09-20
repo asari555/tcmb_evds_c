@@ -2,12 +2,12 @@
 
 A C library for reaching the database of The Central Bank of The Republic of Turkey (CBRT).
 
-The crate was purely written in Rust language and provides C FFI functions to make the EVDS web services operations in C language. The built format of this crate is the C library. In addition, prebuilt C libraries are supplied with this repo.
+The crate was purely written in Rust language and provides C FFI functions to make the EVDS web services operations in C language. The output of the built format of this crate is the C library. In addition, prebuilt C library is served to users in the release section.
 
 ### Table of Contents
 
 + **[General Information](#general-information)**
-+ **[Prebuilt Libraries](#prebuilt-libraries)**
++ **[Prebuilt Library](#prebuilt-library)**
 + **[Pre-requests](#pre-requests)**
 + **[Installation](#installation)**
 + **[Building C Library](#building-c-library)**
@@ -17,7 +17,6 @@ The crate was purely written in Rust language and provides C FFI functions to ma
 + **[Parameters](#parameters)**
 + **[Example](#example)**
 + **[Attention](#attention)**
-+ **[Release History](#release-history)**
 + **[References](#references)**
 
 ## General Information
@@ -28,11 +27,11 @@ The crate is designed to operate the FFI functions easily and safely with the he
 
 There are sub-modules inside of the `evds_c` module. These are called `advanced_entities`, `common_entities` and `error_handling`. Related entities such as enums are located in the mentioned modules. However, these modules are not given in the header file. C users works with the header that contains all of the public enums and structures located in the mentioned modules. These entities should be use to supply appropriate arguments to the operational function parameters.
 
-## Prebuilt Libraries
+## Prebuilt Library
 
-There are ready built libraries that are served in the workspace folder. Furthermore, the name of the folder contains the libraries is `prebuilt_libraries`. The header called `tcmb_evds_c.h` and the dynamic library for Windows, MacOs and Unix extensions are given in `prebuilt_libraries`. 
+There is a ready built library served to users. Furthermore, the header called `tcmb_evds_c.h` and the dynamic library for Windows, MacOs and Unix extensions are given as zipped together in the release section. 
 
-*If users want to build one of the libraries on their computers, the installation procedures below must be followed.*
+*If users want to build the library on their computers, the installation procedures below must be followed.*
 
 ## Pre-requests
 
@@ -64,7 +63,7 @@ cd tcmb_evds_c
 
 ## Building C Library
 
-The crate should be built to get the required header file and OS dependent library for C. The the header file and the library names are `tcmb_evds_c.h` and `libtcmb_evds_c.*` respectively. In addition the header file and the required library are located in `target` and `target/release` folders respectively.
+The crate should be built to get the required header file and OS dependent library for C. The the header file and the library names are `tcmb_evds_c.h` and `libtcmb_evds_c.so` respectively. In addition the header file and the required library are located in `target` and `target/release` folders respectively.
 
 Please, apply the below command into your terminal in the workspace `tcmb_evds_c`.
 ```
@@ -490,15 +489,8 @@ Various errors are handled such as invalid input parameters, bad internet connec
 
 In conclusion, users are responsible to provide valid arguments to operational functions. Especially, `data_series` and `data_group` parameters must be supplied appropriately and with valid arguments.
 
-## Release History
-
-+ 0.1.0
-
-	- The first release.
-
-
 ## References
 
-+ **EVDS usage guide**. CBRT EVDS. Available at: https://evds2.tcmb.gov.tr/help/videos/EVDS_Web_Service_Usage_Guide.pdf
++ **[EVDS user guide](https://evds2.tcmb.gov.tr/help/videos/EVDS_Web_Service_Usage_Guide.pdf)**. CBRT EVDS. 
 
-+ **API key generation**. CBRT EVDS. Available at: https://evds2.tcmb.gov.tr/help/videos/User_Guide_to_Access_EVDS_Data_by_Using_Python.pdf
++ **[API key generation](https://evds2.tcmb.gov.tr/help/videos/User_Guide_to_Access_EVDS_Data_by_Using_Python.pdf)**. CBRT EVDS.
