@@ -319,7 +319,7 @@ int main() {
  
  
     // requesting data.
-    TcmbEvdsResult data_group_result = 
+    TcmbEvdsResult data_group = 
         tcmb_evds_c_get_data_group(
             data_group, 
             date, 
@@ -468,6 +468,10 @@ int main() {
     return_format = Csv;
     
     ascii_mode = false;
+    
+    
+    // requesting data.
+    TcmbEvdsResult series_list = tcmb_evds_c_get_series_list(code, api_key, return_format, ascii_mode);
     
     
     // requesting data.
