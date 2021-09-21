@@ -481,8 +481,6 @@ int main() {
 
     free(series_list_message);
 
-    free(series_list.output_ptr);
-
     return 0;
 }
 
