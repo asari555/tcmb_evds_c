@@ -18,11 +18,11 @@
 //! checking, detailed and specified error types are returned to easily handle and fix the errors. Additionally, the 
 //! operational functions requires **ascii_mode** to convert a format having non-English characters of the response 
 //! text to another format including only English characters. Moreover, the mode as an argument converts non-utf8 
-//! characters to ' * ' **if there is**. Therefore, the response text becomes safe against non-ascii characters. To use 
-//! [`evds_c`](crate::evds_c) in C language, users should build the crate and use both built 
-//! *libtcmb_evds_c.so*/*libtcmb_evds.a*, *libtcmb_evds_c.dylib*/*libtcmb_evds.a* or 
-//! *libtcmb_evds_c.dll*/*libtcmb_evds.lib* for Linux, MacOs and Windows respectively and *tcmb_evds_c.h* file in the 
-//! target folder.
+//! characters to asterisk (*) **if there is**. Therefore, the response text becomes safe against non-ascii characters. 
+//! To use [`evds_c`](crate::evds_c) in C language, users should build the crate and use both built 
+//! *libtcmb_evds_c.so*, *libtcmb_evds_c.dylib* or *libtcmb_evds_c.dll* for multiple platforms and *tcmb_evds_c.h* file 
+//! in the target folder or should download one of the pre-built libraries from
+//! [github](https://github.com/asari555/tcmb_evds_c).
 //!
 //! # Usage
 //! 
