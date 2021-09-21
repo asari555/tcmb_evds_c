@@ -371,14 +371,14 @@ use libc::c_uint;
 ///     
 ///     // handling error and printing the result.
 ///     if (!tcmb_evds_c_is_error(data_result)) { printf("\nNO ERROR!\n"); };
-///     
-///     fwrite(data_result.output_ptr, data_result.string_capacity, 1, stdout);
-///     fflush(stdout);
-///     
 ///     printf("\nError: %s", tcmb_evds_c_is_error(data_result) ? "true" : "false");
-///     
-///     
-///     free(data_result.output_ptr);    
+///   
+///     char* data_result_message = calloc(data_result.string_capacity, sizeof(char));
+///     memmove(data_result_message, data_result.output_ptr, data_result.string_capacity * sizeof(char));
+///    
+///     printf("%s", data_result_message);
+///
+///     free(data_result_message);
 ///
 ///     return 0;
 /// }
@@ -498,15 +498,19 @@ pub extern "C" fn tcmb_evds_c_get_data(
 ///    
 ///    
 ///     // handling error and printing the result.
-///     if (advanced_data_result.error_type == NoError) { printf("\nNO ERROR!\n"); };
-///     
-///     fwrite(advanced_data_result.output_ptr, advanced_data_result.string_capacity, 1, stdout);
-///     fflush(stdout);
-///    
+///     if (!tcmb_evds_c_is_error(advanced_data_result)) { printf("\nNO ERROR!\n"); };
 ///     printf("\nError: %s", tcmb_evds_c_is_error(advanced_data_result) ? "true" : "false");
-///
+///   
+///     char* advanced_data_result_message = calloc(advanced_data_result.string_capacity, sizeof(char));
+///     memmove(
+///         advanced_data_result_message, 
+///         advanced_data_result.output_ptr, 
+///         advanced_data_result.string_capacity * sizeof(char)
+///         );
 ///    
-///     free(advanced_data_result.output_ptr);
+///     printf("%s", advanced_data_result_message);
+///
+///     free(advanced_data_result_message);
 ///
 ///     return 0;
 /// }
@@ -633,7 +637,7 @@ pub extern "C" fn tcmb_evds_c_get_advanced_data(
 /// 
 /// 
 ///     // requesting data.
-///     TcmbEvdsResult data_group_result = 
+///     TcmbEvdsResult data_group = 
 ///         tcmb_evds_c_get_data_group(
 ///             data_group, 
 ///             date, 
@@ -644,15 +648,15 @@ pub extern "C" fn tcmb_evds_c_get_advanced_data(
 /// 
 ///
 ///     // handling error and printing the result.
-///     if (data_group_result.error_type == NoError) { printf("\nNO ERROR!\n"); };
-/// 
-///     fwrite(data_group_result.output_ptr, data_group_result.string_capacity, 1, stdout);
-///     fflush(stdout);
-/// 
-///     printf("\nError: %s", tcmb_evds_c_is_error(data_group_result) ? "true" : "false");
+///     if (!tcmb_evds_c_is_error(data_group)) { printf("\nNO ERROR!\n"); };
+///     printf("\nError: %s", tcmb_evds_c_is_error(data_group) ? "true" : "false");
+///   
+///     char* data_group_message = calloc(data_group.string_capacity, sizeof(char));
+///     memmove(data_group_message, data_group.output_ptr, data_group.string_capacity * sizeof(char));
+///    
+///     printf("%s", data_group_message);
 ///
-///
-///     free(data_group_result.output_ptr);
+///     free(data_group_message);
 ///
 ///     return 0;
 /// }
@@ -743,14 +747,15 @@ pub extern "C" fn tcmb_evds_c_get_data_group(
 /// 
 /// 
 ///     // handling error and printing the result.
-///     if (categories.error_type == NoError) { printf("\nNO ERROR!\n"); };
-/// 
-///     fwrite(categories.output_ptr, categories.string_capacity, 1, stdout);
-/// 
+///     if (!tcmb_evds_c_is_error(categories)) { printf("\nNO ERROR!\n"); };
 ///     printf("\nError: %s", tcmb_evds_c_is_error(categories) ? "true" : "false");
+///   
+///     char* categories_message = calloc(categories.string_capacity, sizeof(char));
+///     memmove(categories_message, categories.output_ptr, categories.string_capacity * sizeof(char));
+///    
+///     printf("%s", categories_message);
 ///
-///
-///     free(categories.output_ptr);
+///     free(categories_message);
 ///
 ///     return 0;
 /// }
@@ -815,19 +820,30 @@ pub extern "C" fn tcmb_evds_c_get_categories(
 ///    
 ///    
 ///     // requesting data.
-///     TcmbEvdsResult advanced_data_group = tcmb_evds_c_get_advanced_data_group(mode, code, api_key, return_format, ascii_mode);
+///     TcmbEvdsResult advanced_data_group = 
+///         tcmb_evds_c_get_advanced_data_group(
+///             mode, 
+///             code, 
+///             api_key, 
+///             return_format, 
+///             ascii_mode
+///             );
 ///     
 ///    
 ///     // handling error and printing the result.
-///     if (advanced_data_group.error_type == NoError) { printf("\nNO ERROR!\n"); };
-///     
-///     fwrite(advanced_data_group.output_ptr, advanced_data_group.string_capacity, 1, stdout);
-///     fflush(stdout);
-///     
+///     if (!tcmb_evds_c_is_error(advanced_data_group)) { printf("\nNO ERROR!\n"); };
 ///     printf("\nError: %s", tcmb_evds_c_is_error(advanced_data_group) ? "true" : "false");
+///   
+///     char* advanced_data_group_message = calloc(advanced_data_group.string_capacity, sizeof(char));
+///     memmove(
+///         advanced_data_group_message, 
+///         advanced_data_group.output_ptr, 
+///         advanced_data_group.string_capacity * sizeof(char)
+///         );
+///    
+///     printf("%s", advanced_data_group_message);
 ///
-///
-///     free(advanced_data_group.output_ptr);
+///     free(advanced_data_group_message);
 ///
 ///     return 0;
 /// }
@@ -902,15 +918,15 @@ pub extern "C" fn tcmb_evds_c_get_advanced_data_group(
 ///    
 ///
 ///     // handling error and printing the result.
-///     if (series_list.error_type == NoError) { printf("\nNO ERROR!\n"); };
-///    
-///     fwrite(series_list.output_ptr, series_list.string_capacity, 1, stdout);
-///     fflush(stdout);
-///        
+///     if (!tcmb_evds_c_is_error(series_list)) { printf("\nNO ERROR!\n"); };
 ///     printf("\nError: %s", tcmb_evds_c_is_error(series_list) ? "true" : "false");
+///   
+///     char* series_list_message = calloc(series_list.string_capacity, sizeof(char));
+///     memmove(series_list_message, series_list.output_ptr, series_list.string_capacity * sizeof(char));
+///    
+///     printf("%s", series_list_message);
 ///
-///
-///     free(series_list.output_ptr);
+///     free(series_list_message);
 ///
 ///     return 0;
 /// }
@@ -956,9 +972,6 @@ pub extern "C" fn tcmb_evds_c_get_series_list(
 ///
 ///     // handling error.
 ///     printf("\nError: %s", tcmb_evds_c_is_error(series_list) ? "true" : "false");
-///
-///
-///     free(series_list.output_ptr);
 /// ```
 #[no_mangle]
 pub extern "C" fn tcmb_evds_c_is_error(result: TcmbEvdsResult) -> bool {
