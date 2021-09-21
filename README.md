@@ -2,21 +2,21 @@
 
 A C library for reaching the database of The Central Bank of The Republic of Turkey (CBRT).
 
-The crate was purely written in Rust language and provides C FFI functions to make the EVDS web services operations in C language. The built format of this crate is the C library.
+The crate was purely written in Rust language and provides C FFI functions to make the EVDS web services operations in C language. The output of the built format of this crate is the C library. In addition, prebuilt C library is served to users in the release section.
 
 ### Table of Contents
 
 + **[General Information](#general-information)**
++ **[Prebuilt Library](#prebuilt-library)**
 + **[Pre-requests](#pre-requests)**
 + **[Installation](#installation)**
-+ **[Building C Library](#building-c-ibrary)**
++ **[Building C Library](#building-c-library)**
 + **[Documentation](#documentation)**
 + **[Enums and Structures](#enums-and-structures)**
 + **[Operational Functions](#operational-functions)**
 + **[Parameters](#parameters)**
 + **[Example](#example)**
 + **[Attention](#attention)**
-+ **[Release History](#release-history)**
 + **[References](#references)**
 
 ## General Information
@@ -26,6 +26,12 @@ tcmb_evds_c is a Rust crate, namely a library for C users. This crate includes a
 The crate is designed to operate the FFI functions easily and safely with the help of safe Rust language. Because of that the functions are supplied with entities of `evds_c` module. This module provides enums are responsible for making error handling, specifying return format of EVDS response and frequency formulas for advanced currency operations. In addition to enums, the module contains structures that make input, and result handling easy. These enums and structures are used as an argument for FFI operational functions. 
 
 There are sub-modules inside of the `evds_c` module. These are called `advanced_entities`, `common_entities` and `error_handling`. Related entities such as enums are located in the mentioned modules. However, these modules are not given in the header file. C users works with the header that contains all of the public enums and structures located in the mentioned modules. These entities should be use to supply appropriate arguments to the operational function parameters.
+
+## Prebuilt Library
+
+There is a ready built library served to users. Furthermore, the header called `tcmb_evds_c.h` and the dynamic library for Windows, MacOs and Unix extensions are given as zipped together in the release section. 
+
+*If users want to build the library on their computers, the installation procedures below must be followed.*
 
 ## Pre-requests
 
@@ -43,9 +49,9 @@ There are sub-modules inside of the `evds_c` module. These are called `advanced_
 
 Please,
 
-create a folder named *tcmb_evds_c*,
+clone the repository,
 ```
-mkdir tcmb_evds_c
+git clone https://github.com/asari555/tcmb_evds_c
 ```
 
 open the folder,
@@ -53,28 +59,22 @@ open the folder,
 cd tcmb_evds_c
 ```
 
-clone the repository,
-```
-git clone https://github.com/asari555/tcmb_evds_c
-```
-
 [`Rust and Cargo`]: <https://doc.rust-lang.org/cargo/getting-started/installation.html>
 
 ## Building C Library
 
-The crate should be built to get the required header file and OS dependent library for C. The the header file and the library names are `tcmb_evds_c.h` and `libtcmb_evds_c.*` respectively. In addition the header file and the required library are located in `target` and `target/release` folders respectively.
+The crate should be built to get the required header file and OS dependent library for C. The the header file and the library names are `tcmb_evds_c.h` and `libtcmb_evds_c.so` respectively. In addition the header file and the required library are located in `target` and `target/release` folders respectively.
 
 Please, apply the below command into your terminal in the workspace `tcmb_evds_c`.
 ```
 cargo build --release
 ```
 
-After this command, user can copy the required files from the mentioned folders.
+After this command, users can copy the required files from the mentioned folders.
 
 ## Documentation
 
 For users who are **curious** about the usage hierarchy, seeing obvious examples and details of the crate, please apply the below command in the workspace `tcmb_evds_c` to open the documentation in their browsers.
-
 ```
 cargo doc --open
 ```
@@ -85,33 +85,33 @@ cargo doc --open
 	
 Aim of using enum is to specify required variable with a name not a magical number.
 
-+ TcmbEvdsReturnFormat
++ **TcmbEvdsReturnFormat**
 
  	is used in operational functions as an argument and specifies return format of the EVDS response.
 
-+ TcmbEvdsReturnErrorC
++ **TcmbEvdsReturnErrorC**
 
 	gives opportunity to handle specified errors. It is used with result structure.
 
-+ TcmbEvdsAggregationType
++ **TcmbEvdsAggregationType**
 
 	is used in operational functions as an argument and specifies aggregation type `tcmb_evds_c_get_advanced_data` function.
 
-+ TcmbEvdsFormula
++ **TcmbEvdsFormula**
 
 	is used in operational functions as an argument and specifies formula for `tcmb_evds_c_get_advanced_data` function.
 
-+ TcmbEvdsDataFrequency 
++ **TcmbEvdsDataFrequency**
 
 	is used in operational functions as an argument and specifies data frequency for `tcmb_evds_c_get_advanced_data` function.
 
 ### **Structures**
 
-+ TcmbEvdsInput
++ **TcmbEvdsInput**
 
 	includes a char pointer and the length of the C string to handle with Rust language.
 
-+ TcmbEvdsResult
++ **TcmbEvdsResult**
 
 	includes a char pointer, the length of the Rust string and error type to handle an error in the case of a problem. The error returns `NoError` when the result returns response against request. Otherwise, it returns specific error type.
 
@@ -489,15 +489,8 @@ Various errors are handled such as invalid input parameters, bad internet connec
 
 In conclusion, users are responsible to provide valid arguments to operational functions. Especially, `data_series` and `data_group` parameters must be supplied appropriately and with valid arguments.
 
-## Release History
-
-+ 0.1.0
-
-	- The first release.
-
-
 ## References
 
-+ **EVDS usage guide**. CBRT EVDS. Available at: https://evds2.tcmb.gov.tr/help/videos/EVDS_Web_Service_Usage_Guide.pdf
++ **[EVDS user guide](https://evds2.tcmb.gov.tr/help/videos/EVDS_Web_Service_Usage_Guide.pdf)**. CBRT EVDS. 
 
-+ **API key generation**. CBRT EVDS. Available at: https://evds2.tcmb.gov.tr/help/videos/User_Guide_to_Access_EVDS_Data_by_Using_Python.pdf
++ **[API key generation](https://evds2.tcmb.gov.tr/help/videos/User_Guide_to_Access_EVDS_Data_by_Using_Python.pdf)**. CBRT EVDS.
