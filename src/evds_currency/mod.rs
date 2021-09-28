@@ -43,21 +43,27 @@ impl ExchangeType {
     }
 
     /// makes buying type true and selling type false.
-    pub(crate) fn select_buying_type(&mut self) {
+    pub(crate) fn select_buying_type(&mut self) -> &mut Self {
         self.buying = true;
         self.selling = false;
+
+        return self;
     }
 
     /// makes selling type true and buying type false.
-    pub(crate) fn select_selling_type(&mut self) {
+    pub(crate) fn select_selling_type(&mut self) -> &mut Self {
         self.buying = false;
         self.selling = true;
+
+        return self;
     }
 
     /// makes both type true.
-    pub(crate) fn select_both_types(&mut self) {
+    pub(crate) fn select_both_types(&mut self) -> &mut Self {
         self.buying = true;
         self.selling = true;
+
+        return self;
     }
 
     pub(crate) fn is_selling_type(&self) -> bool {
